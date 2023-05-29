@@ -7,8 +7,8 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 model = tf.keras.models.load_model('keras_model.h5')
 
+class_names = ['결막염', '정상']  # 클래스 이름 리스트
 
-class_names = ['conjunctivitis', 'Normal']  # 클래스 이름 리스트
 
 # 업로드 HTML 렌더링
 @app.route('/upload')
@@ -35,7 +35,12 @@ def upload_file():
         class_index = np.argmax(prediction)  # 가장 높은 확률 값을 가진 클래스의 인덱스
         class_name = class_names[class_index]  # 클래스 이름
         result = {'class_name': class_name}  # 클래스 이름 반환
-        return jsonify(result), 200
+
+        # 결과를 result.html 템플릿에 전달하여 렌더링
+        return render_template('result.html', result=result['class_name'])
+
+
+
 
 
 if __name__ == '__main__':

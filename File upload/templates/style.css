@@ -1,0 +1,15 @@
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+#result-text {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#result {
+    color: #00b894;
+}
