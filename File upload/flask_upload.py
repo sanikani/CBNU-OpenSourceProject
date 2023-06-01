@@ -4,10 +4,10 @@ from PIL import Image
 from flask import Flask, render_template, request, jsonify
 from werkzeug.utils import secure_filename
 
-app = Flask(__name__, static_folder='static', template_folder='templates')
+app = Flask(__name__)
 model = tf.keras.models.load_model('keras_model.h5')
 
-class_names = ['결막염', '정상']  # 클래스 이름 리스트
+class_names = ['정상', '결막염', '색소침착성각막염', '안검내반증', '안검염', '안검종양', '유루증', '핵경화']  # 클래스 이름 리스트
 
 
 @app.route('/')
