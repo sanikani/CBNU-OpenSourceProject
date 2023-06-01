@@ -4,13 +4,19 @@ from PIL import Image
 from flask import Flask, render_template, request, jsonify
 from werkzeug.utils import secure_filename
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', template_folder='templates')
 model = tf.keras.models.load_model('keras_model.h5')
 
 class_names = ['결막염', '정상']  # 클래스 이름 리스트
 
 
+@app.route('/')
+def dsf():
+    return render_template('main.html')
+
+
 # 업로드 HTML 렌더링
+
 @app.route('/upload')
 def render_file():
     return render_template('upload.html')
@@ -38,9 +44,6 @@ def upload_file():
 
         # 결과를 result.html 템플릿에 전달하여 렌더링
         return render_template('result.html', result=result['class_name'])
-
-
-
 
 
 if __name__ == '__main__':
