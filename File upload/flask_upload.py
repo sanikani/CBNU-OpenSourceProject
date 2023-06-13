@@ -1,7 +1,7 @@
 import numpy as np
 import tensorflow as tf
 from PIL import Image
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
@@ -23,7 +23,7 @@ def render_file():
 
 
 # 파일 업로드 처리
-@app.route('/fileUpload', methods=['GET', 'POST'])
+@app.route('/result', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
         f = request.files['file']
